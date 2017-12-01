@@ -21,7 +21,7 @@
 @end
 
 @implementation ZJTabBar
-/*
+
 #pragma mark - Override Methods
 - (void)setFrame:(CGRect)frame
 {
@@ -32,16 +32,14 @@
 }
 
 #pragma mark - Initial Methods
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.translucent =false;
-        self.backgroundColor = [UIColor clearColor];
+        
     }
     return self;
 }
-*/
+
 -(void)setBackgroundImage:(UIImage *)backgroundImage{
     if (backgroundImage) {
         backgroundImage = [self stretchImg:backgroundImage LeftAndRightContainerSize:CGSizeMake(zScreenWidth, backgroundImage.size.height+safeAreaBottomH)];

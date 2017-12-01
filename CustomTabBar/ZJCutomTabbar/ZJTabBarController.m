@@ -9,6 +9,7 @@
 #import "ZJTabBarController.h"
 #import "ZJNavigationController.h"
 #import "ZJTabBar.h"
+#import "ViewController.h"
 
 @interface ZJTabBarController ()<UITabBarControllerDelegate>
 
@@ -38,7 +39,7 @@
     
     NSArray *imageArray = @[@"homepage_table_zx_wxz_icon.png",@"homepage_table_jcjj_wxz_icon.png",@"sy_tab_wzj_icon.png",@"homepage_sy_tab_zjwd_icon.png",@"homepage_table_wd_wxz_icon.png"];
     NSArray *imageSelectArray =@[@"homepage_table_zx_xz_icon.png",@"homepage_table_jcjj_xz_icon.png",@"sy_tab_wzj_xz_icon.png",@"homepage_sy_tab_zjwd_xz_icon.png",@"homepage_table_wd_xz_icon.png"];
-    NSArray *classNames = @[@"ViewController",@"UIViewController",@"UIViewController",@"UIViewController", @"UIViewController"];
+    NSArray *classNames = @[@"UIViewController",@"UIViewController",@"UIViewController",@"UIViewController", @"UIViewController"];
 
     for (int j=0;j<classNames.count;j++) {
         NSString *className = classNames[j];
@@ -71,8 +72,14 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     NSInteger index = [tabBarController.childViewControllers indexOfObject:viewController];
     
-    if (index == 3) {
+    if (index == 2) {
+        ViewController *vc = [ViewController new];
         
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+        
+        return NO;
     }
     
     return YES;

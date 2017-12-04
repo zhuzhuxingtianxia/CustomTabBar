@@ -126,9 +126,13 @@
     UIGraphicsEndImageContext();
     
     //2.第二次拉伸左边 保护右边
-    UIImage *secondStrechImage = [firstStrechImage stretchableImageWithLeftCapWidth:firstStrechImage.size.width *0.1 topCapHeight:firstStrechImage.size.height*0.5];
+    //UIImage *secondStrechImage = [firstStrechImage stretchableImageWithLeftCapWidth:firstStrechImage.size.width *0.1 topCapHeight:firstStrechImage.size.height*0.5];
     
-    return secondStrechImage;
+    //return secondStrechImage;
+    
+    UIImage *resultImg = [firstStrechImage resizableImageWithCapInsets:UIEdgeInsetsMake(firstStrechImage.size.height*0.5, firstStrechImage.size.width *0.1, firstStrechImage.size.height*0.5, firstStrechImage.size.width *0.8) resizingMode:UIImageResizingModeStretch];
+    
+    return resultImg;
 }
 
 

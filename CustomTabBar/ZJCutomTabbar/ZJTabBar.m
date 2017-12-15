@@ -17,6 +17,9 @@
 @interface ZJTabBar ()
 {
     UIView *selctItem;
+    UIImage *groundImage;
+    UIImage *landscapeImage;
+    UIImage *portraitImage;
 }
 @end
 
@@ -35,15 +38,35 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
+       
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange) name:UIDeviceOrientationDidChangeNotification object:nil];
     }
     return self;
 }
 
+- (void)deviceOrientationDidChange{
+    UIImage *image;
+    UIDeviceOrientation orientation =[UIDevice currentDevice].orientation;
+     if (orientation == UIDeviceOrientationLandscapeLeft ||orientation == UIDeviceOrientationLandscapeRight) {
+         if (!landscapeImage) {
+             landscapeImage = [self stretchImg:groundImage LeftAndRightContainerSize:CGSizeMake(zScreenWidth, groundImage.size.height - safeAreaBottomH)];
+         }
+         image = landscapeImage;
+        
+     }else{
+         if (!portraitImage) {
+             portraitImage = [self stretchImg:groundImage LeftAndRightContainerSize:CGSizeMake(zScreenWidth, groundImage.size.height+safeAreaBottomH)];
+         }
+         image = portraitImage;
+         
+     }
+    [super setBackgroundImage:image];
+}
+
 -(void)setBackgroundImage:(UIImage *)backgroundImage{
     if (backgroundImage) {
+         groundImage = backgroundImage;
         backgroundImage = [self stretchImg:backgroundImage LeftAndRightContainerSize:CGSizeMake(zScreenWidth, backgroundImage.size.height+safeAreaBottomH)];
-        
     }
     [super setBackgroundImage:backgroundImage];
 }
